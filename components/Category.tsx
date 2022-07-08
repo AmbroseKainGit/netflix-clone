@@ -18,6 +18,9 @@ function Category({ title, movies }: Props) {
       const { scrollLeft, clientWidth } = rowRef.current;
       const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
       rowRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+      if (scrollTo === 0) {
+        setIsMoved(false);
+      }
     }
   };
 
