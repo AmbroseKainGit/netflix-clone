@@ -8,6 +8,7 @@ import useAuth from '../hooks/useAuth';
 import { useRecoilValue } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
 import Modal from '../components/Modal';
+import { useState, useEffect } from 'react';
 
 interface Props {
   netflixOriginals: Movie[]
@@ -34,7 +35,7 @@ const Home = ({
   if (loading) return null;
   const showModal = useRecoilValue(modalState);
   return (
-    <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh] ${showModal && '!h-screen overflow-hidden'}`}>
+    <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh]`}>
       <Head>
         <title>Home - Netflix</title>
         <link rel="icon" href="/favicon.ico" />

@@ -33,7 +33,12 @@ function Modal() {
         }
         fetchData();
     }, [movie])
-
+    useEffect(() => {
+        document.body.classList.add('overflowHidden');
+        return () => {
+            document.body.classList.remove('overflowHidden');
+        };
+    });
     const handleClose = () => {
         setShowModal(false);
     };
