@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { Element, Genre } from '../typings';
 import ReactPlayer from 'react-player/lazy';
 import { FaPlay } from 'react-icons/fa';
-import { ClassNames } from '@emotion/react';
 function Modal() {
     const [showModal, setShowModal] = useRecoilState(modalState);
     const movie = useRecoilValue(movieState);

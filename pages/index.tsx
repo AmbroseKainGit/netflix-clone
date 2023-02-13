@@ -1,24 +1,24 @@
-import Head from 'next/head';
-import Banner from '../components/Banner';
-import Header from '../components/Header';
-import Category from '../components/Category';
-import { Movie } from '../typings';
-import requests from '../utils/request';
-import useAuth from '../hooks/useAuth';
-import { useRecoilValue } from 'recoil';
-import { modalState } from '../atoms/modalAtom';
-import Modal from '../components/Modal';
-import { useState, useEffect } from 'react';
+import Head from "next/head";
+import Banner from "../components/Banner";
+import Header from "../components/Header";
+import Category from "../components/Category";
+import { Movie } from "../typings";
+import requests from "../utils/request";
+import useAuth from "../hooks/useAuth";
+import { useRecoilValue } from "recoil";
+import { modalState } from "../atoms/modalAtom";
+import Modal from "../components/Modal";
+import Plans from '../components/Plans';
 
 interface Props {
-  netflixOriginals: Movie[]
-  trendingNow: Movie[]
-  topRated: Movie[]
-  actionMovies: Movie[]
-  comedyMovies: Movie[]
-  horrorMovies: Movie[]
-  romanceMovies: Movie[]
-  documentaries: Movie[]
+  netflixOriginals: Movie[];
+  trendingNow: Movie[];
+  topRated: Movie[];
+  actionMovies: Movie[];
+  comedyMovies: Movie[];
+  horrorMovies: Movie[];
+  romanceMovies: Movie[];
+  documentaries: Movie[];
 }
 
 const Home = ({
@@ -29,11 +29,13 @@ const Home = ({
   horrorMovies,
   romanceMovies,
   topRated,
-  trendingNow
+  trendingNow,
 }: Props) => {
   const { loading } = useAuth();
-  if (loading) return null;
   const showModal = useRecoilValue(modalState);
+  const subscription = false;
+  if (loading || subscription === null) return null;
+  if (!subscription) return <Plans />;
   return (
     <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh]`}>
       <Head>
@@ -57,8 +59,8 @@ const Home = ({
       {/* modal */}
       {showModal && <Modal />}
     </div>
-  )
-}
+  );
+};
 
 export default Home;
 
@@ -71,7 +73,7 @@ export const getServerSideProps = async () => {
     comedyMovies,
     horrorMovies,
     romanceMovies,
-    documentaries
+    documentaries,
   ] = await Promise.all([
     fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
     fetch(requests.fetchTrending).then((res) => res.json()),
@@ -81,7 +83,7 @@ export const getServerSideProps = async () => {
     fetch(requests.fetchHorrorMovies).then((res) => res.json()),
     fetch(requests.fetchRomanceMovies).then((res) => res.json()),
     fetch(requests.fetchDocumentaries).then((res) => res.json()),
-  ])
+  ]);
 
   return {
     props: {
@@ -92,7 +94,7 @@ export const getServerSideProps = async () => {
       comedyMovies: comedyMovies.results,
       horrorMovies: horrorMovies.results,
       romanceMovies: romanceMovies.results,
-      documentaries: documentaries.results
+      documentaries: documentaries.results,
     },
-  }
-}
+  };
+};
