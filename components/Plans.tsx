@@ -6,7 +6,7 @@ import { CheckIcon } from "@heroicons/react/outline";
 function Plans() {
   const { logout } = useAuth();
 
-  const LiComponent = (heading: string) => {
+  const ListComponent = (heading: string) => {
     return (
       <li className="li-plan">
         <CheckIcon className="icons-plan" />
@@ -18,7 +18,7 @@ function Plans() {
     <div>
       <Head>
         <title>Netflix</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/netflixicon.ico" />
       </Head>
 
       <header className="border-b border-white/10 bg-[#141414]">
@@ -43,9 +43,9 @@ function Plans() {
           Choose the plan thats right for you
         </h1>
         <ul>
-          {LiComponent("Watch all you want. Ad-Free.")}
-          {LiComponent("Recomendations Just for you")}
-          {LiComponent("Cancel you plan anytime")}
+          {ListComponent("Watch all you want. Ad-Free.")}
+          {ListComponent("Recomendations Just for you")}
+          {ListComponent("Cancel you plan anytime")}
         </ul>
 
         <div className="mt-4 flex flex-col space-y-0">

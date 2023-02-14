@@ -25,17 +25,18 @@ function Login() {
     <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent ">
       <Head>
         <title>Netflix</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/netflixicon.ico" />
       </Head>
       <Image
         src="https://rb.gy/p2hphi"
         layout="fill"
         className="-z-10 !hidden opacity-60 sm:!inline"
         objectFit="cover"
+        alt="Login Background"
       />
 
       <div className="absolute left-2 top-2 h-20 w-44 cursor-pointer md:left-8 md:top-4">
-        <Image src="https://rb.gy/ek4j9f" layout="fill" objectFit="contain" />
+        <Image alt="Netflix" src="https://rb.gy/ek4j9f" layout="fill" objectFit="contain" />
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="relative mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14">

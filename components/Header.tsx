@@ -27,6 +27,7 @@ function Header() {
                     width={100}
                     height={100}
                     className="cursor-pointer object-contain"
+                    alt="Netflix"
                 />
 
                 <ul className="hidden space-x-4 md:flex">
@@ -45,7 +46,7 @@ function Header() {
                 <img
                     onClick={logout}
                     src="https://rb.gy/g1pwyx"
-                    alt=""
+                    alt="Logout"
                     className="cursor-pointer rounded"
                 />
                 {/* </Link> */}
