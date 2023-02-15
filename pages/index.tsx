@@ -11,6 +11,7 @@ import Modal from "../components/Modal";
 import Plans from "../components/Plans";
 import { Product, getProducts } from "@stripe/firestore-stripe-payments";
 import payments from "../lib/stripe";
+import useSubscription from "../hooks/useSubscription";
 
 interface Props {
   netflixOriginals: Movie[];
@@ -35,19 +36,19 @@ const Home = ({
   trendingNow,
   products
 }: Props) => {
-  const { loading } = useAuth();
+  const { loading, user } = useAuth();
   const showModal = useRecoilValue(modalState);
-  const subscription = false;
+  const subscription = useSubscription(user);
   if (loading || subscription === null) return null;
-  if (!subscription) return <Plans products={products}/>;
+  if (!subscription) return <Plans products={products} />;
   return (
     <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh]`}>
       <Head>
         <title>Home - Netflix</title>
-        <link rel="icon" href="/netflixicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="relative pl-6 pb-24 lg:space-y-24 lg:pl-16">
+      <main className="relative pl-6 pb-24 lg:space-y-16 lg:pl-16">
         <Banner netflixOriginals={netflixOriginals} />
         <section className="md:space-y-24">
           <Category title="Trending Now" movies={trendingNow} />
@@ -72,8 +73,9 @@ export const getServerSideProps = async () => {
   const products = await getProducts(payments, {
     includePrices: true,
     activeOnly: true
-  }).then((res) => res)
-  .catch((err) => console.error(err));
+  })
+    .then((res) => res)
+    .catch((err) => console.error(err));
   const [
     netflixOriginals,
     trendingNow,

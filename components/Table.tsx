@@ -1,6 +1,4 @@
 import { Product } from "@stripe/firestore-stripe-payments";
-import { CheckIcon } from "@heroicons/react/outline";
-import { FaTimes } from "react-icons/fa";
 import { TableRow } from "./TableRow";
 
 interface Props {

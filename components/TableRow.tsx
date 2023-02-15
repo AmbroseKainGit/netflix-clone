@@ -9,7 +9,7 @@ interface Props {
   type: string;
 }
 export const TableRow = ({ title, products, selectedPlan, type }: Props) => {
-  const Children = (product: Product, type: string): string | JSX.Element => {
+  const children = (product: Product, type: string): string | JSX.Element => {
     switch (type) {
       case "monthly":
         return `EUR${product?.prices[0].unit_amount! / 100}`;
@@ -37,7 +37,7 @@ export const TableRow = ({ title, products, selectedPlan, type }: Props) => {
             selectedPlan?.id === product.id ? "text-[#e50914]" : "text-[gray]"
           }`}
         >
-          {Children(product, type)}
+          {children(product, type)}
         </td>
       ))}
     </tr>
