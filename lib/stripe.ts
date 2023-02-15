@@ -19,5 +19,5 @@ const loadCheckout = async (priceId: string) => {
     .catch((error) => console.error(error.message));
 };
 
-export { loadCheckout };
 export default payments;
+export { loadCheckout };
