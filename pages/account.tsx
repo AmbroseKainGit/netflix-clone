@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps = async () => {
     activeOnly: true
   })
     .then((res) => res)
-    .catch((error) => console.log(error.message));
+    .catch((error) => console.log(error.message)) || null;
   return {
     props: {
       products: products
