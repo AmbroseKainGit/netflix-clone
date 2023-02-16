@@ -86,10 +86,11 @@ export const getStaticProps: GetStaticProps = async () => {
     activeOnly: true
   })
     .then((res) => res)
-    .catch((error) => console.log(error.message)) || null;
+    .catch((error) => console.log(error.message));
+
   return {
     props: {
-      products: products
+      products
     }
   };
 };
