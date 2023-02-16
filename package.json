@@ -10,7 +10,7 @@
     "@emotion/styled": "^11.9.3",
     "@heroicons/react": "^1.0.6",
     "@mui/material": "^5.8.7",
-    "@stripe/firestore-stripe-payments": "^0.0.3",
+    "@stripe/firestore-stripe-payments": "^0.0.6",
     "firebase": "^9.8.4",
     "next": "latest",
     "next-transpile-modules": "^10.0.0",
@@ -21,6 +21,10 @@
     "react-player": "^2.10.1",
     "recoil": "^0.7.4",
     "tailwind-scrollbar-hide": "^1.1.7"
+  },
+  "overrides": {
+    "@firebase/app": "0.7.29",
+    "@firebase/firestore": "3.4.13"
   },
   "devDependencies": {
     "@types/node": "17.0.35",
