@@ -81,13 +81,15 @@ const Account = ({ products }: Props) => {
 export default Account;
 
 export const getStaticProps: GetStaticProps = async () => {
+  console.log(payments);
   const products = await getProducts(payments, {
     includePrices: true,
     activeOnly: true
   })
-    .then((res) => res)
-    .catch((error) => console.log(error.message));
-
+  .then((res) => res)
+  .catch((error) => console.log(error.message));
+  
+  console.log(products);
   return {
     props: {
       products
