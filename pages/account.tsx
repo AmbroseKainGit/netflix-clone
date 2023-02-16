@@ -56,7 +56,8 @@ const Account = ({ products }: Props) => {
             {
               products.filter(
                 (product) => product.id === subscription?.product
-              )[0]?.name}
+              )[0]?.name
+            }
           </div>
           <p className="cursor-pointer text-blue-500 hover:underline md:text-right">
             Change plan
@@ -88,7 +89,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .catch((error) => console.log(error.message));
   return {
     props: {
-      products
+      products: products
     }
   };
 };
