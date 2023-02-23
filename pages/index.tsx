@@ -6,12 +6,13 @@ import { Movie } from "../typings";
 import requests from "../utils/request";
 import useAuth from "../hooks/useAuth";
 import { useRecoilValue } from "recoil";
-import { modalState } from "../atoms/modalAtom";
+import { modalState, movieState } from "../atoms/modalAtom";
 import Modal from "../components/Modal";
 import Plans from "../components/Plans";
 import { Product, getProducts } from "@stripe/firestore-stripe-payments";
 import payments from "../lib/stripe";
 import useSubscription from "../hooks/useSubscription";
+import useList from "../hooks/useList";
 
 interface Props {
   netflixOriginals: Movie[];
@@ -39,6 +40,8 @@ const Home = ({
   const { loading, user } = useAuth();
   const showModal = useRecoilValue(modalState);
   const subscription = useSubscription(user);
+  const movie = useRecoilValue(movieState);
+  const userList = useList(user?.uid);
   if (loading || subscription === null) return null;
   if (!subscription) return <Plans products={products} />;
   return (
@@ -54,14 +57,16 @@ const Home = ({
           <Category title="Trending Now" movies={trendingNow} />
           <Category title="Top Rated" movies={topRated} />
           <Category title="Action Thrillers" movies={actionMovies} />
-          {/* My List */}
+          {userList.length > 0 && (
+            <Category title="My List" movies={userList} />
+          )}
+
           <Category title="Comedies" movies={comedyMovies} />
           <Category title="Scary Movies" movies={horrorMovies} />
           <Category title="Romance Movies" movies={romanceMovies} />
           <Category title="Documentaries" movies={documentaries} />
         </section>
       </main>
-      {/* modal */}
       {showModal && <Modal />}
     </div>
   );

@@ -54,9 +54,9 @@ const Account = ({ products }: Props) => {
           {/* Current plan of the user */}
           <div className="col-span-2">
             {
-              products.filter(
+              products.find(
                 (product) => product.id === subscription?.product
-              )[0]?.name
+              )?.name
             }
           </div>
           <p className="cursor-pointer text-blue-500 hover:underline md:text-right">
@@ -81,15 +81,12 @@ const Account = ({ products }: Props) => {
 export default Account;
 
 export const getStaticProps: GetStaticProps = async () => {
-  console.log(payments);
   const products = await getProducts(payments, {
     includePrices: true,
     activeOnly: true
   })
   .then((res) => res)
   .catch((error) => console.log(error.message));
-  
-  console.log(products);
   return {
     props: {
       products
