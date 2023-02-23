@@ -209,7 +209,7 @@ function Modal() {
                 )}
               </button>
 
-              <button className="modalButton" onClick={handleLikedMovie}>
+              <button className="modalButton">
                 <ThumbUpIcon className="h-7 w-7" />
               </button>
             </div>
